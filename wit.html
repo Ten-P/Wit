@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title>          Ten-P blog
+        </title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            header{
+                color: green;
+            }
+        </style>
+    </head>
+    <body class="UI_body_Assistant"
+    style="min-height: 100vh
+    display: flex;
+    flex-direction: column;
+    ">
+       <header>
+           <h1>Ten-P blog</h1>
+           <nav>
+               <ul>
+                   <li><a href="#">ホーム（ブログ一覧）</a></li>
+               </ul>
+           </nav>
+       </header>
+    <div style="
+    flex: 1;
+    ">
+    
+    <nav> </nav>
+       <main>
+           <article>
+        　   <h1>
+            Wiimms iso toolsでisoにファイルを上書きしてみよう
+        </h1>
+        <h2>wiimms iso toolsってなんぞや</h2>
+        <p>Wimms iso tools（以下wit)は、wiimm氏によって作られたiso編集ツールである。「合法的に（自分で吸い出した）」isoをさらに分解し、中に入っている
+        ファイルを取り出すことができたり、取り出したファイルを編集してisoに上書きすれば、そのiso（いわばミュージックハックや
+        テクスチャハックが施された）をdolphinで起動できたりするのである。そのプロセスを今回簡単に説明していく。（以下、説明は
+        Windows向けのものとなっており、Mario Kart Wiiのミュージックハック、テクスチャハックがある程度できる前提のもとで説明を続けていく。）
+        </p>
+        <h2>witを使う準備をしよう</h2>
+        witは<a href="https://wit.wiimm.de/download.html">ここ</a>からダウンロードできる。最新版のwitをダウンロードするのがよいが、私が使っている
+        「WIT v3.02a」を使うのも良いと思う。それではWindows版のやつダウンロードしてもろて。
+        ダウンロードして中身を解凍したら、下の画像のようになっていると思う。
+        <img src="https://cdn.discordapp.com/attachments/826733187975348258/827840038091227146/2021-04-03_2.png" width="100%" height="100%" >
+        windows-install.exeを押してwitをWindowsにダウンロードしよう。すると、黒い画面が出てくると思う。setupが終わったら自動で黒い画面が閉じるだろう。
+        もしかしたらwitを初めてインストールする場合、黒い画面が閉じた後「アプリケーションは正しくインストールされましたか？」的な文章が出てくるかもしれない。
+        （私は出てきた。）出てきたら「正しくインストールされました。」を選ぼう。
+        <h2>
+            実際にwitを使ってみよう
+        </h2>
+        <p>
+            それではwitを使っていこう。上の過程でインストールが完了したら、自分で吸い出した
+            iso、もしくはwbfsファイルをbinフォルダーの中にぶち込もう。（isoファイルの吸い出し方がわからない人は下のリンクから飛んでいただきたい）
+            
+        </p>
+        <p>
+            <a href="https://ten-p.github.io/Clean_Rip/">wiiからゲームイメージをiso形式で吸い出してみよう</a>
+        </p>
+        <p>
+            ちなみにwbfsファイルというものも、isoファイルと一緒でゲームイメージファイルの拡張子の一つである。
+            どうすればwbfs形式でゲームイメージを吸い出せるかは別の記事で説明することにしよう。（やる気があったら…）
+
+        </p>
+        <p>
+            話を戻そう。自分で吸い出したisoファイル、もしくはwbfsファイルをwitのbinフォルダーの中にぶち込む。今回はMario Kart Wiiのディスクイメージを使う。こんな感じになってるはず。
+            <img src="https://cdn.discordapp.com/attachments/826733187975348258/827868669606232065/2021-04-03_3.png" width="100%" height="100%">
+            次に、このbinフォルダーのしたら辺に、wit-console.batというものがあるだろう。それを開こう。黒い画面が出てくるはず。
+            <img src="https://cdn.discordapp.com/attachments/826733187975348258/827869201758683167/2021-04-03_4.png" width="100%" height="100%">
+            そして、"wit x isoまたはwbfs名 保存したいファイル名（任意の名前で可）"と打ち込む。例を下に示す。
+            <img src="https://cdn.discordapp.com/attachments/826733187975348258/827870053663768586/2021-04-03_6.png" width="100%" height="100%">
+            打ち込んだ後Enterキーを押すと、isoファイルからのデータの展開が始まる。例の場合、all_dataというフォルダーに全てのファイルが展開される。
+            展開が終わると下の画像のようになるので、それまでじっくり待とう。
+            <img src="https://cdn.discordapp.com/attachments/826733187975348258/827871540522778715/2021-04-03_7.png" width="100%" height="100%">
+            binフォルダーの中身を見てほしい。きっと任意の名前のフォルダー（例の場合で言えばall_data）が出現してるはずだ。フォルダーの中にいろいろ
+            なファイルやフォルダーが入っているだろう。自分で中身を散策してみるとよい。今回はミュージックハックをやってみよう。
+    
+
+        </p>
+        <h2>
+            音楽ファイルの置き換えをやってみよう
+
+        </h2>
+        <p>
+            all_dataフォルダーの中身を開くと、CHANNELとDATAというフォルダーが入っているだろう。DATA>files>soundまで進むとrevo_kart.brsarとstrmというフォルダーが
+            あるのがわかるだろう。
+            <img src="https://cdn.discordapp.com/attachments/826733187975348258/827883787533680710/2021-04-03_9.png" width="100%" height="100%">
+            このstrmの中にbrstmファイルが全部入っているはずだ（正しく吸い出せていたら）。brstmファイルを上書きして置き換えよう。
+            <img src="https://cdn.discordapp.com/attachments/826733187975348258/827884823661903872/2021-04-03_11.png" width="100%" height="100%">
+            これで上書きの準備は完了だ。次はこの編集したall_dataをisoに上書きしよう。
+        </p>
+        <h2>isoにフォルダーのデータを上書きしよう</h2>
+        <p>
+            それではもう一度wit-console.batを開いて。今度は"wit copy 任意のフォルダ名　isoまたはwbfs名 -o"と打とう。
+            <img src="https://cdn.discordapp.com/attachments/826733187975348258/827896386874900500/2021-04-03_13.png" width="100%" height="100%">
+            Enterキーを押すと上書きが始まる。上書きが終わると下のようになる。
+            <img src="https://cdn.discordapp.com/attachments/826733187975348258/827898352846241802/2021-04-03_14.png" width="100%" height="100%">
+            これでwitでの編集過程はすべて終わりだ。お疲れ様。最後にdolphinエミュレータなどのエミュレーターで上書きができているかどうか確認してみよう。
+            dolphinエミュレータの使い方は…わかるよね？＾＾；
+
+        </p>
+        <p>
+            今回witの使い方をざっと説明してみたがMario Kart Wii以外のゲームでも当然同じ方法で展開、上書きが可能である。
+            しかし、中に入っているファイルがゲームによって違うので、それらの各々の編集は別のサイトで調べてもろて。。。
+            しかしwiimm氏が作ったwiimms szs tools(wszst)というものがあり、これを使えばwiiの様々なゲームファイルを展開したり、上書きしたりできる。
+            Mario Kart Wii で言えばコースをリメイクしたり自作のコースを作ったりするときに必須のアイテムとなってくる。これについても
+            記事を書く気になれば書こうかな。
+            
+        </p>
+
+
+    
+       </main>
+       <aside> </aside>
+       </div>
+       <fooder> </fooder>　 <fooder>
+       </body>
+           </article>
